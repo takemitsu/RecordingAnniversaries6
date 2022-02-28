@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DaysController;
+use App\Http\Controllers\EntityController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,3 +31,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+// とりあえず web 側で api を定義
+Route::prefix('api')->group(function () {
+    Route::get('entities/pickup', [EntityController::class, 'pickup']);
+
+    Route::apiResources([
+        'entities' => EntityController::class,
+        'entities.days' => DaysController::class,
+    ]);
+});
