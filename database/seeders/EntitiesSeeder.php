@@ -24,37 +24,24 @@ class EntitiesSeeder extends Seeder
             ->where('email', 'takemitsu@notespace.jp')
             ->first();
         if ($user) {
-            $entities1 = Entity::firstOrCreate([
-                'user_id' => $user->id,
-                'name' => 'Test Group Name',
-                'desc' => 'Test Group Desc',
-            ]);
-
             $now = Carbon::yesterday();
-            for ($i = 0; $i < 10; $i++) {
-                $now = $now->addDay();
-                $day = Days::create([
-                    'entity_id' => $entities1->id,
-                    'name' => 'Test Entity ' . strval($i),
-                    'desc' => 'Text Entity Desc ' . $i,
-                    'anniv_at' => $now->format('Y-m-d'),
+            $now = $now->subDay();
+            for ($h = 1; $h < 4 + 1; $h++) {
+                $entities1 = Entity::firstOrCreate([
+                    'user_id' => $user->id,
+                    'name' => 'Test Group Name' . $h,
+                    'desc' => 'Test Group Desc' . $h,
                 ]);
-            }
 
-            $entities2 = Entity::firstOrCreate([
-                'user_id' => $user->id,
-                'name' => 'Test Group Name 2',
-                'desc' => null,
-            ]);
-
-            for ($i = 0; $i < 10; $i++) {
-                $now = $now->addDay();
-                $day = Days::create([
-                    'entity_id' => $entities2->id,
-                    'name' => 'Test Entity ' . strval($i),
-                    'desc' => null,
-                    'anniv_at' => $now->format('Y-m-d'),
-                ]);
+                for ($i = 0; $i < $h; $i++) {
+                    $now = $now->addDay();
+                    $day = Days::create([
+                        'entity_id' => $entities1->id,
+                        'name' => 'Test Entity ' . strval($i),
+                        'desc' => 'Text Entity Desc ' . $i,
+                        'anniv_at' => $now->format('Y-m-d'),
+                    ]);
+                }
             }
         }
     }
