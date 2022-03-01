@@ -5,6 +5,8 @@ use App\Http\Controllers\EntityController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Entity;
+use \App\Models\Days;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,19 +44,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ]);
     })->name('entity.create');
 
-    Route::get('/entity/{entity}', function (\App\Models\Entity $entity) {
+    Route::get('/entity/{entity}', function (Entity $entity) {
         return Inertia::render('Entity', [
             'entityData' => $entity,
             'status' => session('status'),
         ]);
     })->name('entity.edit');
 
-    Route::get('/anniv', function () {
-        return Inertia::render('Anniv');
-    })->name('anniv');
+    Route::get('/entity/{entity}/day', function (Entity $entity) {
+        return Inertia::render('Anniv', [
+            'entityData' => $entity,
+            'dayData' => null,
+            'status' => session('status'),
+        ]);
+    })->name('entities.days.create');
+
+    Route::get('/entity/{entity}/day/{day}', function (Entity $entity, Days $day) {
+        return Inertia::render('Anniv', [
+            'entityData' => $entity,
+            'dayData' => $day,
+            'status' => session('status'),
+        ]);
+    })->name('entities.days.edit');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // とりあえず web 側で api を定義
 Route::prefix('api')->group(function () {

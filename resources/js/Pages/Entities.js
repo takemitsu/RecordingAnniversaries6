@@ -54,8 +54,8 @@ export default function Entities(props) {
                     return (
                         <div key={'E' + entity.id} className="m-4 bg-neutral-200 rounded drop-shadow">
                             <h3 className="px-2 pt-1 pb-1 font-bold text-sm">
-                                <div className="flex justify-between">
-                                    <span>{entity.name}</span>
+                                <div className="flex">
+                                    <span className="flex-1">{entity.name}</span>
                                     <Link
                                         href={route('entity.edit', {entity: entity.id})}
                                         method="get"
@@ -63,6 +63,15 @@ export default function Entities(props) {
                                         className="underline text-sm text-gray-600 hover:text-gray-900"
                                     >
                                         Edit
+                                    </Link>
+
+                                    <Link
+                                        href={route('entities.days.create', {entity: entity.id})}
+                                        method="get"
+                                        as="button"
+                                        className="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
+                                    >
+                                        Add Anniv
                                     </Link>
                                 </div>
                             </h3>
@@ -75,6 +84,15 @@ export default function Entities(props) {
                                             <span className="text-sm mx-2">まで</span>
                                             <span className="text-pink-600 font-bold">{day.diff_days}</span>
                                             <span className="text-sm ml-2">日</span>
+
+                                            <Link
+                                                href={route('entities.days.edit', {entity: entity.id, day: day.id})}
+                                                method="get"
+                                                as="button"
+                                                className="underline text-sm text-gray-600 hover:text-gray-900 ml-2"
+                                            >
+                                                Edit
+                                            </Link>
                                         </div>
                                         <div className="mt-2">
                                             <span> {day.anniv_at}</span>

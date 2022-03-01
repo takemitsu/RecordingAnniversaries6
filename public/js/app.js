@@ -4914,6 +4914,133 @@ function Guest(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Anniv.js":
+/*!*************************************!*\
+  !*** ./resources/js/Pages/Anniv.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Entity)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Components_Checkbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Checkbox */ "./resources/js/Components/Checkbox.js");
+/* harmony import */ var _Layouts_Guest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Layouts/Guest */ "./resources/js/Layouts/Guest.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+function Entity(props) {
+  var dayData = props.dayData;
+  var entityData = props.entityData;
+  var status = props.status;
+
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.useForm)({
+    id: dayData ? dayData.id : undefined,
+    name: dayData ? dayData.name : undefined,
+    desc: dayData ? dayData.desc : undefined,
+    anniv_at: dayData ? dayData.anniv_at : undefined
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post,
+      processing = _useForm.processing,
+      errors = _useForm.errors,
+      put = _useForm.put;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+  };
+
+  var submit = function submit(e) {
+    e.preventDefault();
+
+    if (dayData && dayData.id) {
+      put(route('entities.days.update', {
+        entity: entityData.id,
+        day: dayData.id
+      }));
+    } else {
+      post(route('entities.days.store', {
+        entity: entityData.id
+      }));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    auth: props.auth,
+    errors: props.errors,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_8__.Head, {
+      title: (dayData ? 'Update' : 'Create') + ' Day'
+    }), status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+      className: "mb-4 font-medium text-sm text-green-600",
+      children: status
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      className: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mx-auto",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
+        className: "mb-2",
+        children: [dayData ? 'Update' : 'Create', " Day"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h3", {
+        className: "mb-2",
+        children: entityData.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        errors: errors
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
+        onSubmit: submit,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            forInput: "name",
+            value: "\u540D\u524D"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            type: "text",
+            name: "name",
+            value: data.name,
+            className: "mt-1 block w-full",
+            isFocused: true,
+            handleChange: onHandleChange
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            forInput: "desc",
+            value: "\u8AAC\u660E"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            type: "text",
+            name: "desc",
+            value: data.desc,
+            className: "mt-1 block w-full",
+            handleChange: onHandleChange
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "flex items-center justify-end mt-4",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            className: "ml-4",
+            processing: processing,
+            children: dayData ? 'Update' : 'Create'
+          })
+        })]
+      })]
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/ConfirmPassword.js":
 /*!****************************************************!*\
   !*** ./resources/js/Pages/Auth/ConfirmPassword.js ***!
@@ -5808,8 +5935,9 @@ function Entities(props) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h3", {
             className: "px-2 pt-1 pb-1 font-bold text-sm",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-              className: "flex justify-between",
+              className: "flex",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                className: "flex-1",
                 children: entity.name
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
                 href: route('entity.edit', {
@@ -5819,6 +5947,14 @@ function Entities(props) {
                 as: "button",
                 className: "underline text-sm text-gray-600 hover:text-gray-900",
                 children: "Edit"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                href: route('entities.days.create', {
+                  entity: entity.id
+                }),
+                method: "get",
+                as: "button",
+                className: "underline text-sm text-gray-600 hover:text-gray-900 ml-2",
+                children: "Add Anniv"
               })]
             })
           }), entity.days.map(function (day) {
@@ -5837,6 +5973,15 @@ function Entities(props) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
                   className: "text-sm ml-2",
                   children: "\u65E5"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                  href: route('entities.days.edit', {
+                    entity: entity.id,
+                    day: day.id
+                  }),
+                  method: "get",
+                  as: "button",
+                  className: "underline text-sm text-gray-600 hover:text-gray-900 ml-2",
+                  children: "Edit"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                 className: "mt-2",
@@ -5963,7 +6108,6 @@ function Entity(props) {
             name: "desc",
             value: data.desc,
             className: "mt-1 block w-full",
-            isFocused: true,
             handleChange: onHandleChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
@@ -60373,6 +60517,8 @@ module.exports = function getSideChannel() {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Anniv": "./resources/js/Pages/Anniv.js",
+	"./Anniv.js": "./resources/js/Pages/Anniv.js",
 	"./Auth/ConfirmPassword": "./resources/js/Pages/Auth/ConfirmPassword.js",
 	"./Auth/ConfirmPassword.js": "./resources/js/Pages/Auth/ConfirmPassword.js",
 	"./Auth/ForgotPassword": "./resources/js/Pages/Auth/ForgotPassword.js",
