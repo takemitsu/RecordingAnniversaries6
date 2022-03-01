@@ -13,7 +13,6 @@ export default function Entities(props) {
     useEffect(() => {
         async function fetchList() {
             const res = await entityService.list();
-            console.log(res)
             setList(res)
         }
 

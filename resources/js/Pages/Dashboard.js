@@ -12,7 +12,6 @@ export default function Dashboard(props) {
     useEffect(() => {
         async function fetchList() {
             const res = await entityService.pickup();
-            console.log(res)
             setList(res)
         }
 

@@ -5605,10 +5605,9 @@ function Dashboard(props) {
 
               case 2:
                 res = _context.sent;
-                console.log(res);
                 setList(res);
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -5759,10 +5758,9 @@ function Entities(props) {
 
               case 2:
                 res = _context.sent;
-                console.log(res);
                 setList(res);
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
