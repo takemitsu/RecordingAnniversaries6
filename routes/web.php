@@ -26,9 +26,33 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/entities', function () {
+        return Inertia::render('Entities');
+    })->name('entities');
+
+    Route::get('/entity', function () {
+        return Inertia::render('Entity', [
+            'entityData' => null,
+            'status' => session('status'),
+        ]);
+    })->name('entity.create');
+
+    Route::get('/entity/{entity}', function (\App\Models\Entity $entity) {
+        return Inertia::render('Entity', [
+            'entityData' => $entity,
+            'status' => session('status'),
+        ]);
+    })->name('entity.edit');
+
+    Route::get('/anniv', function () {
+        return Inertia::render('Anniv');
+    })->name('anniv');
+});
 
 require __DIR__.'/auth.php';
 

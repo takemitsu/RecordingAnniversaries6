@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.15.39/api/entities"
+const baseUrl = "/api/entities"
 import axios from "axios";
 
 const entity = {};

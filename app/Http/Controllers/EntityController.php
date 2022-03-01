@@ -15,7 +15,7 @@ class EntityController extends Controller
 
     public function pickup()
     {
-        $entities = Entity::where('user_id',auth()->user()->id)
+        $entities = Entity::where('user_id', auth()->user()->id)
             ->has('days')
             ->with('days')
             ->orderBy('created_at', 'asc')
@@ -45,7 +45,7 @@ class EntityController extends Controller
             ->with('days')
             ->orderBy('created_at', 'asc')
             ->get();
-            //->paginate(20);
+        //->paginate(20);
     }
 
 
@@ -63,7 +63,8 @@ class EntityController extends Controller
         $entity->desc = $validatedData['desc'];
         $entity->save();
 
-        return $entity;
+        return redirect()->route('entities');
+//        return $entity;
     }
 
 
@@ -85,13 +86,16 @@ class EntityController extends Controller
         $entity->desc = $validatedData['desc'];
         $entity->save();
 
-        return $entity;
+        return redirect()->route('entities');
+//        return $entity;
     }
 
 
     public function destroy(Entity $entity)
     {
         $entity->delete();
-        return;
+
+        return redirect()->route('entities');
+//        return;
     }
 }
