@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
-import {Head, Link, useForm} from '@inertiajs/inertia-react';
+import {Head, useForm} from '@inertiajs/inertia-react';
+import Textarea from "@/Components/Textarea";
 
 
 export default function Entity(props) {
@@ -43,7 +42,7 @@ export default function Entity(props) {
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mx-auto">
 
-                <h2 className="mb-2">{entityData ? 'Update' : 'Create'} Entity</h2>
+                <h2 className="mb-2 border-b">{entityData ? 'Update' : 'Create'} Group</h2>
 
                 <ValidationErrors errors={errors}/>
 
@@ -58,14 +57,14 @@ export default function Entity(props) {
                             className="mt-1 block w-full"
                             isFocused={true}
                             handleChange={onHandleChange}
+                            required={true}
                         />
                     </div>
 
                     <div>
                         <Label forInput="desc" value="説明"/>
 
-                        <Input
-                            type="text"
+                        <Textarea
                             name="desc"
                             value={data.desc}
                             className="mt-1 block w-full"

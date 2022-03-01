@@ -33,4 +33,9 @@ entity.delete = async id => {
     return await axios.delete(urlGet).then(response => response.data).catch(err => err)
 }
 
+entity.deleteDay = async (entityId, dayId) => {
+    const urlGet = baseUrl + '/' + entityId + '/days/' + dayId;
+    return await axios.delete(urlGet).then(response => response.data).catch(err => err)
+}
+
 export default entity;

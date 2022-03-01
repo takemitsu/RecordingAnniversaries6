@@ -7,6 +7,7 @@ import Label from '@/Components/Label';
 import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
 import {Head, Link, useForm} from '@inertiajs/inertia-react';
+import Textarea from "@/Components/Textarea";
 
 
 export default function Entity(props) {
@@ -45,7 +46,7 @@ export default function Entity(props) {
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mx-auto">
 
-                <h2 className="mb-2">{dayData ? 'Update' : 'Create'} Day</h2>
+                <h2 className="mb-2 border-b">{dayData ? 'Update' : 'Create'} Anniversary Day</h2>
 
                 <h3 className="mb-2">{entityData.name}</h3>
 
@@ -62,14 +63,26 @@ export default function Entity(props) {
                             className="mt-1 block w-full"
                             isFocused={true}
                             handleChange={onHandleChange}
+                            required={true}
+                        />
+                    </div>
+
+                    <div>
+                        <Label forInput="anniv_at" value="記念日"/>
+
+                        <Input
+                            type="text"
+                            name="anniv_at"
+                            value={data.anniv_at}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
                         />
                     </div>
 
                     <div>
                         <Label forInput="desc" value="説明"/>
 
-                        <Input
-                            type="text"
+                        <Textarea
                             name="desc"
                             value={data.desc}
                             className="mt-1 block w-full"

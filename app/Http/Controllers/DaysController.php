@@ -40,11 +40,12 @@ class DaysController extends Controller
         $day = new Days();
         $day->entity_id = $entity->id;
         $day->name = $validatedData['name'];
-        $day->desc = $validatedData['desc'];
+        $day->desc = $validatedData['desc'] ?? null;
         $day->anniv_at = $validatedData['anniv_at'];
         $day->save();
 
-        return $day;
+        return redirect()->route('entities');
+//        return $day;
     }
 
 
@@ -72,11 +73,12 @@ class DaysController extends Controller
         ]);
 
         $day->name = $validatedData['name'];
-        $day->desc = $validatedData['desc'];
+        $day->desc = $validatedData['desc'] ?? null;
         $day->anniv_at = $validatedData['anniv_at'];
         $day->save();
 
-        return $day;
+        return redirect()->route('entities');
+//        return $day;
     }
 
 

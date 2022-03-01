@@ -60,7 +60,7 @@ class EntityController extends Controller
         $entity = new Entity();
         $entity->user_id = auth()->user()->id;
         $entity->name = $validatedData['name'];
-        $entity->desc = $validatedData['desc'];
+        $entity->desc = $validatedData['desc'] ?? null;
         $entity->save();
 
         return redirect()->route('entities');
@@ -83,7 +83,7 @@ class EntityController extends Controller
         ]);
 
         $entity->name = $validatedData['name'];
-        $entity->desc = $validatedData['desc'];
+        $entity->desc = $validatedData['desc'] ?? null;
         $entity->save();
 
         return redirect()->route('entities');
@@ -95,7 +95,6 @@ class EntityController extends Controller
     {
         $entity->delete();
 
-        return redirect()->route('entities');
-//        return;
+        return;
     }
 }
