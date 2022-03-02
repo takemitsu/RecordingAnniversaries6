@@ -1,3 +1,9 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import "react-datepicker/dist/react-datepicker.css";
+
+.d-none {
+    display: none;
+}

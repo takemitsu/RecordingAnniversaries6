@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
@@ -7,6 +7,11 @@ import ValidationErrors from '@/Components/ValidationErrors';
 import {Head, Link, useForm} from '@inertiajs/inertia-react';
 import Textarea from "@/Components/Textarea";
 import dayjs from "dayjs";
+import DatePicker, {registerLocale} from 'react-datepicker'
+import ja from 'date-fns/locale/ja'
+
+dayjs.locale('ja')
+registerLocale('ja', ja)
 
 
 export default function Entity(props) {
@@ -16,13 +21,24 @@ export default function Entity(props) {
     const {data, setData, post, processing, errors, put} = useForm({
         id: dayData ? dayData.id : undefined,
         name: dayData ? dayData.name : "",
-        desc: dayData ? dayData.desc : undefined,
+        desc: dayData ? (dayData.desc ?? undefined) : undefined,
         anniv_at: dayData ? dayData.anniv_at : dayjs().format('YYYY-MM-DD'),
     });
+
+    const setTimeZero = (date) => {
+        return dayjs(date).hour(0).minute(0).second(0).millisecond(0).toDate()
+    }
+    const [selectDate, setSelectDate] = useState(dayData ? setTimeZero(dayData.anniv_at) : setTimeZero(new Date()))
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
+    const onHandleChangeAnnivAt = async (date) => {
+        await setSelectDate(date)
+        // console.log(date, typeof date, date instanceof Date)
+        await setData('anniv_at', dayjs(date).format('YYYY-MM-DD'))
+        // console.log(data.anniv_at)
+    }
 
     const submit = (e) => {
         e.preventDefault();
@@ -67,15 +83,25 @@ export default function Entity(props) {
                     </div>
 
                     <div>
-                        <Label forInput="anniv_at" value="anniversary day"/>
-
-                        <Input
-                            type="text"
-                            name="anniv_at"
-                            value={data.anniv_at}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required={true}
+                        <Label value="anniversary day"/>
+                        <DatePicker
+                            selected={selectDate}
+                            onChange={onHandleChangeAnnivAt}
+                            locale="ja"
+                            popperClassName="d-none"
+                            dateFormat="yyyy-MM-dd"
+                            className="rounded"
+                        />
+                        <DatePicker
+                            selected={selectDate}
+                            onChange={onHandleChangeAnnivAt}
+                            locale="ja"
+                            inline
+                            dateFormat="yyyy-MM-dd"
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            todayButton="Today"
                         />
                     </div>
 
