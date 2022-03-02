@@ -5873,7 +5873,7 @@ function Dashboard(props) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "m-4 bg-neutral-200 rounded drop-shadow",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
-            className: "px-2 pt-1 pb-1 font-bold text-sm",
+            className: "px-2 pt-1 pb-1 text-sm",
             children: entity.name
           }), entity.days.map(function (day) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -5893,7 +5893,7 @@ function Dashboard(props) {
                   children: "\u65E5"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                className: "mt-2",
+                className: "mt-0",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
                   children: [" ", day.anniv_at]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {

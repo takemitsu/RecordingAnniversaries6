@@ -41,7 +41,7 @@ export default function Dashboard(props) {
                 {list.map((entity) => {
                     return (
                         <div key={'E' + entity.id} className="m-4 bg-neutral-200 rounded drop-shadow">
-                            <h3 className="px-2 pt-1 pb-1 font-bold text-sm">{entity.name}</h3>
+                            <h3 className="px-2 pt-1 pb-1 text-sm">{entity.name}</h3>
                             {entity.days.map((day) => {
                                 return (
                                     <div key={'D' + day.id}
@@ -52,7 +52,7 @@ export default function Dashboard(props) {
                                             <span className="text-pink-600 font-bold">{day.diff_days}</span>
                                             <span className="text-sm ml-2">日</span>
                                         </div>
-                                        <div className="mt-2">
+                                        <div className="mt-0">
                                             <span> {day.anniv_at}</span>
                                             <span>（{japanDate(day.anniv_at, true)}）</span>
                                             <span className="ml-1">{getAges(day.anniv_at)}</span>
