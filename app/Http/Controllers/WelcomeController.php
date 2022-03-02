@@ -9,11 +9,6 @@ use Inertia\Inertia;
 
 class WelcomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(Request $request): \Inertia\Response
     {
         return Inertia::render('Welcome', [
