@@ -536,6 +536,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 28rem;
 }.flex-1{
   flex: 1 1 0%;
+}.flex-shrink-0{
+  flex-shrink: 0;
 }.shrink-0{
   flex-shrink: 0;
 }.origin-top{
@@ -564,6 +566,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }.flex-col{
   flex-direction: column;
+}.flex-wrap{
+  flex-wrap: wrap;
 }.items-start{
   align-items: flex-start;
 }.items-center{

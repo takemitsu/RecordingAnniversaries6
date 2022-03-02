@@ -9,6 +9,7 @@ import Textarea from "@/Components/Textarea";
 import dayjs from "dayjs";
 import DatePicker, {registerLocale} from 'react-datepicker'
 import ja from 'date-fns/locale/ja'
+import japanDate from "@/util/japanDate";
 
 dayjs.locale('ja')
 registerLocale('ja', ja)
@@ -29,15 +30,15 @@ export default function Entity(props) {
         return dayjs(date).hour(0).minute(0).second(0).millisecond(0).toDate()
     }
     const [selectDate, setSelectDate] = useState(dayData ? setTimeZero(dayData.anniv_at) : setTimeZero(new Date()))
+    const [reki, setReki] = useState(dayData ? japanDate(dayData.anniv_at, true) : japanDate(dayjs().format('YYYY-MM-DD'), true))
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
-    const onHandleChangeAnnivAt = async (date) => {
-        await setSelectDate(date)
-        // console.log(date, typeof date, date instanceof Date)
-        await setData('anniv_at', dayjs(date).format('YYYY-MM-DD'))
-        // console.log(data.anniv_at)
+    const onHandleChangeAnnivAt = (date) => {
+        setSelectDate(date)
+        setData('anniv_at', dayjs(date).format('YYYY-MM-DD'))
+        setReki(japanDate(dayjs(date).format('YYYY-MM-DD'), true))
     }
 
     const submit = (e) => {
@@ -84,6 +85,7 @@ export default function Entity(props) {
 
                     <div>
                         <Label value="anniversary day"/>
+                        <div className="flex justify-between items-center">
                         <DatePicker
                             selected={selectDate}
                             onChange={onHandleChangeAnnivAt}
@@ -92,6 +94,10 @@ export default function Entity(props) {
                             dateFormat="yyyy-MM-dd"
                             className="rounded"
                         />
+                            <div className="flex-wrap flex-shrink-0">
+                                {reki}
+                            </div>
+                        </div>
                         <DatePicker
                             selected={selectDate}
                             onChange={onHandleChangeAnnivAt}
