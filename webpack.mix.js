@@ -18,7 +18,6 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
         require('autoprefixer'),
     ])
-    .browserSync('192.168.15.39')
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {
