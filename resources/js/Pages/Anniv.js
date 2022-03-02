@@ -4,7 +4,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
-import {Head, useForm} from '@inertiajs/inertia-react';
+import {Head, Link, useForm} from '@inertiajs/inertia-react';
 import Textarea from "@/Components/Textarea";
 import dayjs from "dayjs";
 
@@ -45,7 +45,7 @@ export default function Entity(props) {
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mx-auto">
 
-                <h2 className="mb-2 border-b">{dayData ? 'Update' : 'Create'} Anniversary Day</h2>
+                <h2 className="mb-4 border-b">{dayData ? 'Update' : 'Create'} Anniversary Day</h2>
 
                 <h3 className="mb-2">{entityData.name}</h3>
 
@@ -53,7 +53,7 @@ export default function Entity(props) {
 
                 <form onSubmit={submit}>
                     <div>
-                        <Label forInput="name" value="名前"/>
+                        <Label forInput="name" value="day name"/>
 
                         <Input
                             type="text"
@@ -67,7 +67,7 @@ export default function Entity(props) {
                     </div>
 
                     <div>
-                        <Label forInput="anniv_at" value="記念日"/>
+                        <Label forInput="anniv_at" value="anniversary day"/>
 
                         <Input
                             type="text"
@@ -75,11 +75,12 @@ export default function Entity(props) {
                             value={data.anniv_at}
                             className="mt-1 block w-full"
                             handleChange={onHandleChange}
+                            required={true}
                         />
                     </div>
 
                     <div>
-                        <Label forInput="desc" value="説明"/>
+                        <Label forInput="desc" value="description"/>
 
                         <Textarea
                             name="desc"
@@ -89,7 +90,16 @@ export default function Entity(props) {
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="flex items-center justify-between mt-4">
+                        <Link
+                            href={route('entities.index')}
+                            method="get"
+                            as="button"
+                            className="underline"
+                        >
+                            Back to List
+                        </Link>
+
                         <Button className="ml-4" processing={processing}>
                             {dayData ? 'Update' : 'Create'}
                         </Button>

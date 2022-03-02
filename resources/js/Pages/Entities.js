@@ -50,7 +50,7 @@ export default function Entities(props) {
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
                     >
-                        Add Entity Group
+                        Add Group
                     </Link>
                 </div>
 

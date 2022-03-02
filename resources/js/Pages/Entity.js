@@ -4,7 +4,7 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
-import {Head, useForm} from '@inertiajs/inertia-react';
+import {Head, Link, useForm} from '@inertiajs/inertia-react';
 import Textarea from "@/Components/Textarea";
 
 
@@ -42,13 +42,13 @@ export default function Entity(props) {
 
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg mx-auto">
 
-                <h2 className="mb-2 border-b">{entityData ? 'Update' : 'Create'} Group</h2>
+                <h2 className="mb-4 border-b">{entityData ? 'Update' : 'Create'} Group</h2>
 
                 <ValidationErrors errors={errors}/>
 
                 <form onSubmit={submit}>
                     <div>
-                        <Label forInput="name" value="名前"/>
+                        <Label forInput="name" value="group name"/>
 
                         <Input
                             type="text"
@@ -62,7 +62,7 @@ export default function Entity(props) {
                     </div>
 
                     <div>
-                        <Label forInput="desc" value="説明"/>
+                        <Label forInput="desc" value="description"/>
 
                         <Textarea
                             name="desc"
@@ -72,7 +72,16 @@ export default function Entity(props) {
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="flex items-center justify-between mt-4">
+                        <Link
+                            href={route('entities.index')}
+                            method="get"
+                            as="button"
+                            className="underline"
+                        >
+                            Back to List
+                        </Link>
+
                         <Button className="ml-4" processing={processing}>
                             {entityData ? 'Update' : 'Create'}
                         </Button>
