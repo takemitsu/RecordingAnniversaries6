@@ -98,7 +98,7 @@ export default function Authenticated({ auth, header, children }) {
                             pickup
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={'/entities'} active={route().current('entities')}>
-                            List
+                            List & Edit
                         </ResponsiveNavLink>
 
                     </div>

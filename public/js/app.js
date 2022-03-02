@@ -4919,7 +4919,7 @@ function Authenticated(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"], {
             href: '/entities',
             active: route().current('entities'),
-            children: "List"
+            children: "List & Edit"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "pt-4 pb-1 border-t border-gray-200",
@@ -5373,6 +5373,9 @@ function Login(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_3__["default"], {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Head, {
       title: "Log in"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
+      className: "mb-4 border-b",
+      children: "Login"
     }), status && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-4 font-medium text-sm text-green-600",
       children: status
@@ -5424,7 +5427,7 @@ function Login(_ref) {
         children: [canResetPassword && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
           href: route('register'),
           className: "underline text-sm text-gray-600 hover:text-gray-900",
-          children: "Sign up"
+          children: "Register"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
           className: "ml-4",
           processing: processing,
@@ -5497,6 +5500,9 @@ function Register() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
       title: "Register"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+      className: "mb-4 border-b",
+      children: "Register"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
       errors: errors
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
@@ -6301,7 +6307,7 @@ function Welcome(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Head, {
       title: "Welcome"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 items-center pt-0",
+      className: "relative flex items-top justify-center min-h-screen bg-neutral-200 items-center pt-0",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "fixed top-0 right-0 px-6 py-4 sm:block",
         children: props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -6322,19 +6328,26 @@ function Welcome(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "max-w-6xl mx-auto px-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "p-6 bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg",
+          className: "p-6 bg-white overflow-hidden shadow rounded-lg",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "text-center text-lg text-gray-900 dark:text-white",
+            className: "text-center text-lg text-gray-600",
             children: "ra"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "mt-2 text-gray-600 dark:text-gray-400 text-sm",
+            className: "mt-1 text-gray-400 text-sm text-center",
             children: "Recoding Anniversaries."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "mt-4 text-gray-300 text-xs text-left",
+            children: "\u8A18\u5FF5\u65E5\u306E\u8A18\u9332\u3092\u30C7\u30D0\u30A4\u30B9\u306B\u56DA\u308F\u308C\u305A\u306B\u4FDD\u5B58"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "flex justify-end mt-4 sm:items-center sm:justify-end",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
             className: "ml-4 text-right text-sm text-gray-500 sm:text-right sm:ml-0",
-            children: ["Laravel v", props.laravelVersion, " (PHP v", props.phpVersion, ")"]
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              href: "https://laravel.com/",
+              className: "underline pr-1",
+              children: "Laravel"
+            }), "v", props.laravelVersion, " (PHP v", props.phpVersion, ")"]
           })
         })]
       })]

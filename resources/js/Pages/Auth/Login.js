@@ -33,6 +33,7 @@ export default function Login({ status, canResetPassword }) {
     return (
         <Guest>
             <Head title="Log in" />
+            <h2 className="mb-4 border-b">Login</h2>
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
@@ -80,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                             href={route('register')}
                             className="underline text-sm text-gray-600 hover:text-gray-900"
                         >
-                            Sign up
+                            Register
                         </Link>
                     )}
 

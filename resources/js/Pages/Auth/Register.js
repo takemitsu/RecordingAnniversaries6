@@ -33,6 +33,7 @@ export default function Register() {
     return (
         <Guest>
             <Head title="Register" />
+            <h2 className="mb-4 border-b">Register</h2>
 
             <ValidationErrors errors={errors} />
 
