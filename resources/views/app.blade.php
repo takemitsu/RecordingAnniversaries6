@@ -19,8 +19,11 @@
     <body class="font-sans antialiased">
         @inertia
 
+        @if(false)
+            何をしているのか分からんのでコメント化
         @env ('local')
             <script src="http://localhost:8080/js/bundle.js"></script>
         @endenv
+        @endif
     </body>
 </html>

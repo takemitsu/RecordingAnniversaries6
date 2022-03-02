@@ -22,14 +22,7 @@ export default function Entities(props) {
     }
 
     function handleRemoveEntity(entity) {
-        // console.log('pushed remove button', entity)
         if (confirm('remove this entity: ' + entity.name)) {
-            // console.log('yes')
-            // entityService.delete(entity.id).then((res) => {
-            //     setupdateCount(updateCount + 1)
-            // }).catch((err) => {
-            //     console.error(err)
-            // })
             Inertia.delete(route('entities.destroy', {entity: entity.id}))
         }
     }
@@ -69,7 +62,8 @@ export default function Entities(props) {
                                     <div className="flex items-center">
                                         <span className="flex-1">{entity.name}</span>
 
-                                        <TextButton type="button" className="bg-neutral-200 text-orange-500" handleClick={() => handleRemoveEntity(entity)}>
+                                        <TextButton type="button" className="bg-neutral-200 text-orange-500"
+                                                    handleClick={() => handleRemoveEntity(entity)}>
                                             Remove
                                         </TextButton>
 
@@ -120,7 +114,8 @@ export default function Entities(props) {
                                             <span className="ml-1">{getAges(day.anniv_at)}</span>
                                         </div>
                                         <div className="text-right">
-                                            <TextButton type="button" className="text-orange-500 bg-neutral-50" handleClick={() => handleRemoveDay(entity, day)}>
+                                            <TextButton type="button" className="text-orange-500 bg-neutral-50"
+                                                        handleClick={() => handleRemoveDay(entity, day)}>
                                                 Remove
                                             </TextButton>
 

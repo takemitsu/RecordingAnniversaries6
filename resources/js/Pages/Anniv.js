@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
-import {Head, Link, useForm} from '@inertiajs/inertia-react';
+import {Head, useForm} from '@inertiajs/inertia-react';
 import Textarea from "@/Components/Textarea";
 import dayjs from "dayjs";
 
