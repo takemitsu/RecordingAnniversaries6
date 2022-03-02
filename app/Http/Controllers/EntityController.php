@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Inertia\Inertia;
 
 class EntityController extends Controller
 {
@@ -12,6 +13,7 @@ class EntityController extends Controller
     {
         $this->middleware('auth');
     }
+
 
     public function pickup()
     {
@@ -34,18 +36,33 @@ class EntityController extends Controller
             }
         }
 
-        return $entities;
+        return Inertia::render('Dashboard', [
+            'entities' => $entities,
+        ]);
     }
 
 
     public function index()
     {
         // TODO: ページャは後から。。
-        return Entity::where('user_id', auth()->user()->id)
+        $entities = Entity::where('user_id', auth()->user()->id)
             ->with('days')
             ->orderBy('created_at', 'asc')
             ->get();
         //->paginate(20);
+
+        return Inertia::render('Entities', [
+            'entities' => $entities,
+        ]);
+    }
+
+
+    public function create()
+    {
+        return Inertia::render('Entity', [
+            'entityData' => null,
+            'status' => session('status'),
+        ]);
     }
 
 
@@ -63,14 +80,22 @@ class EntityController extends Controller
         $entity->desc = $validatedData['desc'] ?? null;
         $entity->save();
 
-        return redirect()->route('entities');
-//        return $entity;
+        return redirect()->route('entities.index');
     }
 
 
     public function show(Entity $entity)
     {
         return $entity->load('days');
+    }
+
+
+    public function edit(Entity $entity)
+    {
+        return Inertia::render('Entity', [
+            'entityData' => $entity,
+            'status' => session('status'),
+        ]);
     }
 
 
@@ -86,8 +111,7 @@ class EntityController extends Controller
         $entity->desc = $validatedData['desc'] ?? null;
         $entity->save();
 
-        return redirect()->route('entities');
-//        return $entity;
+        return redirect()->route('entities.index');
     }
 
 
@@ -95,6 +119,6 @@ class EntityController extends Controller
     {
         $entity->delete();
 
-        return;
+        return redirect()->route('entities.index');
     }
 }

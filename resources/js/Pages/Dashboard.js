@@ -1,22 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import {Head} from '@inertiajs/inertia-react';
-
-import entityService from '../service/Entities'
 import japanDate from "@/util/japanDate";
 import getAges from "@/util/getAges";
 
 export default function Dashboard(props) {
-    const [list, setList] = useState([]);
-
-    useEffect(() => {
-        async function fetchList() {
-            const res = await entityService.pickup();
-            setList(res)
-        }
-
-        fetchList();
-    }, []);
+    const list = props.entities;
 
     function NoList(props) {
         const list = props.list;

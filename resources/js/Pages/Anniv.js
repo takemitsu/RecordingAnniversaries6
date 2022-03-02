@@ -8,6 +8,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import ValidationErrors from '@/Components/ValidationErrors';
 import {Head, Link, useForm} from '@inertiajs/inertia-react';
 import Textarea from "@/Components/Textarea";
+import dayjs from "dayjs";
 
 
 export default function Entity(props) {
@@ -16,9 +17,9 @@ export default function Entity(props) {
     const status = props.status
     const {data, setData, post, processing, errors, put} = useForm({
         id: dayData ? dayData.id : undefined,
-        name: dayData ? dayData.name : undefined,
+        name: dayData ? dayData.name : "",
         desc: dayData ? dayData.desc : undefined,
-        anniv_at: dayData ? dayData.anniv_at : undefined,
+        anniv_at: dayData ? dayData.anniv_at : dayjs().format('YYYY-MM-DD'),
     });
 
     const onHandleChange = (event) => {

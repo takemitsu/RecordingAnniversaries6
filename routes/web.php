@@ -2,11 +2,8 @@
 
 use App\Http\Controllers\DaysController;
 use App\Http\Controllers\EntityController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Models\Entity;
-use \App\Models\Days;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,63 +16,20 @@ use \App\Models\Days;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-    Route::get('/entities', function () {
-        return Inertia::render('Entities');
-    })->name('entities');
-
-    Route::get('/entity', function () {
-        return Inertia::render('Entity', [
-            'entityData' => null,
-            'status' => session('status'),
-        ]);
-    })->name('entity.create');
-
-    Route::get('/entity/{entity}', function (Entity $entity) {
-        return Inertia::render('Entity', [
-            'entityData' => $entity,
-            'status' => session('status'),
-        ]);
-    })->name('entity.edit');
-
-    Route::get('/entity/{entity}/day', function (Entity $entity) {
-        return Inertia::render('Anniv', [
-            'entityData' => $entity,
-            'dayData' => null,
-            'status' => session('status'),
-        ]);
-    })->name('entities.days.create');
-
-    Route::get('/entity/{entity}/day/{day}', function (Entity $entity, Days $day) {
-        return Inertia::render('Anniv', [
-            'entityData' => $entity,
-            'dayData' => $day,
-            'status' => session('status'),
-        ]);
-    })->name('entities.days.edit');
-});
-
-require __DIR__ . '/auth.php';
-
-// とりあえず web 側で api を定義
-Route::prefix('api')->group(function () {
-    Route::get('entities/pickup', [EntityController::class, 'pickup']);
+    Route::get('/dashboard', [EntityController::class, 'pickup'])->name('dashboard');
+    Route::get('/entities', [EntityController::class, 'index'])->name('entities');
+    Route::get('/entities/create', [EntityController::class, 'create'])->name('entities.create');
+    Route::get('/entities/{entity}/edit', [EntityController::class, 'edit'])->name('entities.edit');
+    Route::get('/entities/{entity}/days/create', [DaysController::class, 'create'])->name('entities.days.create');
+    Route::get('/entities/{entity}/days/{day}/edit', [DaysController::class, 'edit'])->name('entities.days.edit');
 
     Route::apiResources([
         'entities' => EntityController::class,
         'entities.days' => DaysController::class,
     ]);
 });
+
+require __DIR__ . '/auth.php';

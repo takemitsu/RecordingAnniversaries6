@@ -1,25 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import {Head, Link} from '@inertiajs/inertia-react';
-
-import entityService from '../service/Entities'
+import {Head, Link,} from '@inertiajs/inertia-react';
 import japanDate from "@/util/japanDate";
 import getAges from "@/util/getAges";
-import Button from "@/Components/Button";
 import TextButton from "@/Components/TextButton";
+import {Inertia} from "@inertiajs/inertia";
 
 export default function Entities(props) {
-    const [list, setList] = useState([]);
-    const [updateCount, setupdateCount] = useState(0);
-
-    useEffect(() => {
-        async function fetchList() {
-            const res = await entityService.list();
-            setList(res)
-        }
-
-        fetchList();
-    }, [updateCount]);
+    const list = props.entities;
 
     function NoList(props) {
         const list = props.list;
@@ -37,22 +25,18 @@ export default function Entities(props) {
         // console.log('pushed remove button', entity)
         if (confirm('remove this entity: ' + entity.name)) {
             // console.log('yes')
-            entityService.delete(entity.id).then((res) => {
-                setupdateCount(updateCount + 1)
-            }).catch((err) => {
-                console.error(err)
-            })
+            // entityService.delete(entity.id).then((res) => {
+            //     setupdateCount(updateCount + 1)
+            // }).catch((err) => {
+            //     console.error(err)
+            // })
+            Inertia.delete(route('entities.destroy', {entity: entity.id}))
         }
     }
 
     function handleRemoveDay(entity, day) {
         if (confirm('remove this day: ' + day.name)) {
-            // console.log('yes')
-            entityService.deleteDay(entity.id, day.id).then((res) => {
-                setupdateCount(updateCount + 1)
-            }).catch((err) => {
-                console.error(err)
-            })
+            Inertia.delete(route('entities.days.destroy', {entity: entity.id, day: day.id}))
         }
     }
 
@@ -68,7 +52,7 @@ export default function Entities(props) {
                     <h2>Anniversary List</h2>
 
                     <Link
-                        href={route('entity.create')}
+                        href={route('entities.create')}
                         method="get"
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900"
@@ -90,7 +74,7 @@ export default function Entities(props) {
                                         </TextButton>
 
                                         <Link
-                                            href={route('entity.edit', {entity: entity.id})}
+                                            href={route('entities.edit', {entity: entity.id})}
                                             method="get"
                                             as="button"
                                             className="underline text-sm text-sky-600 hover:text-sky-900"

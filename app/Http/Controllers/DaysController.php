@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Days;
 use App\Models\Entity;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DaysController extends Controller
 {
@@ -16,7 +17,7 @@ class DaysController extends Controller
 
     public function index(Entity $entity)
     {
-        if($entity->user->id != auth()->user()->id) {
+        if ($entity->user->id != auth()->user()->id) {
             abort(404, 'Not Found Entity');
         }
 
@@ -24,9 +25,19 @@ class DaysController extends Controller
     }
 
 
+    public function create(Entity $entity)
+    {
+        return Inertia::render('Anniv', [
+            'entityData' => $entity,
+            'dayData' => null,
+            'status' => session('status'),
+        ]);
+    }
+
+
     public function store(Request $request, Entity $entity)
     {
-        if($entity->user->id != auth()->user()->id) {
+        if ($entity->user->id != auth()->user()->id) {
             abort(404, 'Not Found Entity');
         }
 
@@ -44,14 +55,13 @@ class DaysController extends Controller
         $day->anniv_at = $validatedData['anniv_at'];
         $day->save();
 
-        return redirect()->route('entities');
-//        return $day;
+        return redirect()->route('entities.index');
     }
 
 
     public function show(Entity $entity, Days $day)
     {
-        if($entity->user->id != auth()->user()->id) {
+        if ($entity->user->id != auth()->user()->id) {
             abort(404, 'Not Found Entity');
         }
 
@@ -59,9 +69,19 @@ class DaysController extends Controller
     }
 
 
+    public function edit(Request $request, Entity $entity, Days $day)
+    {
+        return Inertia::render('Anniv', [
+            'entityData' => $entity,
+            'dayData' => $day,
+            'status' => session('status'),
+        ]);
+    }
+
+
     public function update(Request $request, Entity $entity, Days $day)
     {
-        if($entity->user->id != auth()->user()->id) {
+        if ($entity->user->id != auth()->user()->id) {
             abort(404, 'Not Found Entity');
         }
 
@@ -77,18 +97,18 @@ class DaysController extends Controller
         $day->anniv_at = $validatedData['anniv_at'];
         $day->save();
 
-        return redirect()->route('entities');
-//        return $day;
+        return redirect()->route('entities.index');
     }
 
 
     public function destroy(Entity $entity, Days $day)
     {
-        if($entity->user->id != auth()->user()->id) {
+        if ($entity->user->id != auth()->user()->id) {
             abort(404, 'Not Found Entity');
         }
 
         $day->delete();
-        return;
+
+        return redirect()->route('entities.index');
     }
 }

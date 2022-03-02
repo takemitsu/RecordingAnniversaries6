@@ -13,7 +13,7 @@ export default function Entity(props) {
     const status = props.status
     const {data, setData, post, processing, errors, put} = useForm({
         id: entityData ? entityData.id : undefined,
-        name: entityData ? entityData.name : undefined,
+        name: entityData ? entityData.name : "",
         desc: entityData ? entityData.desc : undefined,
     });
 
