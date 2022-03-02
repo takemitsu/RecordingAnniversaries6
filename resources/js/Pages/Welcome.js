@@ -40,9 +40,9 @@ export default function Welcome(props) {
 
                     <div className="flex justify-end mt-4 sm:items-center sm:justify-end">
                         <div className="ml-4 text-right text-sm text-gray-500 sm:text-right sm:ml-0">
-                            <Link href='https://laravel.com/' className="underline pr-1">
+                            <a href='https://laravel.com/' className="underline pr-1">
                                 Laravel
-                            </Link>
+                            </a>
                             v{props.laravelVersion} (PHP v{props.phpVersion})
                         </div>
                     </div>

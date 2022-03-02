@@ -6343,7 +6343,7 @@ function Welcome(props) {
           className: "flex justify-end mt-4 sm:items-center sm:justify-end",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
             className: "ml-4 text-right text-sm text-gray-500 sm:text-right sm:ml-0",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
               href: "https://laravel.com/",
               className: "underline pr-1",
               children: "Laravel"
