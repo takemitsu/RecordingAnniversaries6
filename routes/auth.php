@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Log;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -53,4 +55,38 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+});
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('twitter')->redirect();
+});
+
+Route::get('callback', function () {
+    try {
+        $user = Socialite::driver('twitter')->user();
+    }catch (Exception $e) {
+        Log::info($e);
+        redirect('/');
+        return;
+    }
+    Log::info($user->getId()); // id-str
+    Log::info($user->getName());  // これが名前
+    Log::info($user->getNickname()); // @xxx
+    Log::info($user->getEmail());  // メールアドレスは取得できない系？
+    Log::info($user->getAvatar());  // icon url
+
+    $token = $user->token;
+    $tokenSecret = $user->tokenSecret;
+    Log::info($token);
+    Log::info($tokenSecret);
+
+    $userDetail = Socialite::driver('twitter')->userFromTokenAndSecret($token, $tokenSecret);
+    Log::info('---- 2 ----');
+    Log::info($userDetail->getId()); // id-str
+    Log::info($userDetail->getName());  // これが名前
+    Log::info($userDetail->getNickname()); // @xxx
+    Log::info($userDetail->getEmail());  // メールアドレスは取得できない系？
+    Log::info($userDetail->getAvatar());  // icon url;
+
+    // TODO: ID を保存して同じだったらアレするをアレする。
 });
